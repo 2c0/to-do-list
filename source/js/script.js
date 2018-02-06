@@ -25,11 +25,12 @@
     myNodelist[i].appendChild(editBtn);
   }
 } */
-
+var myNodelist = document.getElementsByTagName("li");
 var close = document.getElementsByClassName("checkbox-btn");
+var addBtn = document.getElementById('addBtn');
 
 function createCheckboxes() {
-  var myNodelist = document.getElementsByTagName("li");
+
   var i;
 
   for (i = 0; i < myNodelist.length; i++) {
@@ -42,7 +43,8 @@ function createCheckboxes() {
 
 createCheckboxes();
 
-// Click on a close button to hide the current list item
+// Click on a close button to hide the current list 
+
 for (var i = 0; i < close.length; i++) {
   close[i].addEventListener('click', function () {
     var div = this.parentElement;
@@ -66,31 +68,27 @@ list.addEventListener('click', function (ev) {
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
 
-  createCheckboxes();
-
-/*   var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span); */
+    //adding list item
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+      alert("You must write something!");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+      var input = document.createElement("input");
+      input.setAttribute('type', 'checkbox');
+      input.className = "checkbox-btn";
+      li.appendChild(input);
+    }
+    document.getElementById("myInput").value = "";
 
 
+  console.log('btn works');
 
-/*   for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      var div = this.parentElement;
-      div.style.display = "none";
-    };
-  } */
 }
+
+addBtn.addEventListener('click', newElement);
+
